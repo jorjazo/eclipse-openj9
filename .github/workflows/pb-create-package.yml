@@ -9,13 +9,13 @@ jobs:
         runs-on:
             - ubuntu-latest
         steps:
-            - name: Docker login gcr.io
-              if: ${{ (github.event_name != 'pull_request' || ! github.event.pull_request.head.repo.fork) && (github.actor != 'dependabot[bot]') }}
-              uses: docker/login-action@v2
-              with:
-                password: ${{ secrets.GCR_PUSH_BOT_JSON_KEY }}
-                registry: gcr.io
-                username: _json_key
+#            - name: Docker login gcr.io
+#              if: ${{ (github.event_name != 'pull_request' || ! github.event.pull_request.head.repo.fork) && (github.actor != 'dependabot[bot]') }}
+#              uses: docker/login-action@v2
+#              with:
+#                password: ${{ secrets.GCR_PUSH_BOT_JSON_KEY }}
+#                registry: gcr.io
+#                username: _json_key
             - name: Docker login docker.io
               if: ${{ (github.event_name != 'pull_request' || ! github.event.pull_request.head.repo.fork) && (github.actor != 'dependabot[bot]') }}
               uses: docker/login-action@v2
@@ -202,7 +202,7 @@ jobs:
                     --format "${FORMAT}"
                 fi
               env:
-                PACKAGES: docker.io/paketobuildpacks/eclipse-openj9 gcr.io/paketo-buildpacks/eclipse-openj9
+                PACKAGES: docker.io/paketobuildpacks/eclipse-openj9 #gcr.io/paketo-buildpacks/eclipse-openj9
                 PUBLISH: "true"
                 VERSION: ${{ steps.version.outputs.version }}
                 VERSION_MAJOR: ${{ steps.version.outputs.version-major }}
